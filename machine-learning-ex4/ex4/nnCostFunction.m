@@ -72,25 +72,25 @@ t2(:,1)=0;
 J=J+lambda/(2*m)*(sum(sum(t1.*t1),2)+sum(sum(t2.*t2),2));
 
 
-Theta2_t = Theta2';
-for t = 1:m
-    a_1 = X(t, :)';
-    z_2 = Theta1 * [1; a_1];
-    a_2 = sigmoid(z_2);
-    z_3 = Theta2 * [1; a_2];
-    a_3 = sigmoid(z_3);
+Theta2_t=Theta2';
+for t=1:m
+    a_1=X(t,:)';
+    z_2=Theta1*[1;a_1];
+    a_2=sigmoid(z_2);
+    z_3=Theta2*[1;a_2];
+    a_3=sigmoid(z_3);
 
-    delta_3 = a_3 - yy(t, :)';
-    delta_2 = Theta2_t(2:end, :) * delta_3 .* sigmoidGradient(z_2);
+    delta_3=a_3-yy(t,:)';
+    delta_2=Theta2_t(2:end,:)*delta_3.*sigmoidGradient(z_2);
 
-    Theta2_grad = Theta2_grad + delta_3 * [1; a_2]';
-    Theta1_grad = Theta1_grad + delta_2 * [1; a_1]';
+    Theta2_grad=Theta2_grad+delta_3*[1;a_2]';
+    Theta1_grad=Theta1_grad+delta_2*[1;a_1]';
 end
 
-tmp = lambda / m;
+temp2=lambda/m;
 
-Theta2_grad = Theta2_grad / m + tmp * t2;
-Theta1_grad = Theta1_grad / m + tmp * t1;
+Theta2_grad=Theta2_grad/m+temp2*t2;
+Theta1_grad=Theta1_grad/m+temp2*t1;
 
 
 
